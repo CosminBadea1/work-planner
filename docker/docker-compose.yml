@@ -1,0 +1,28 @@
+version: "3.8"
+
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      - "POSTGRES_DB=work-planner"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=Pass2024!"
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  work-planner:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    restart: on-failure
+    ports:
+      - "8000:8181"
+    depends_on:
+      - postgres
+    environment:
+      - "DATABASE_HOST=postgres"

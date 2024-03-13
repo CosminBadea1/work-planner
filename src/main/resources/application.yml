@@ -1,0 +1,29 @@
+server:
+  port: 8181
+
+spring:
+  application:
+    name: work-planner
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5432/work-planner?currentSchema=planner&stringtype=unspecified
+    username: postgres
+    password: Pass2024!
+  sql:
+    init:
+      platform: postgres
+      schema-locations: classpath:init-schema.sql
+      mode: always
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: ${SWAGGER_UI_ENABLED:true}

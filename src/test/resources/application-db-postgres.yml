@@ -1,0 +1,11 @@
+zonky:
+  test:
+    database:
+      postgres:
+        client:
+          properties:
+            currentSchema: planner
+            stringtype: unspecified
+
+
+
