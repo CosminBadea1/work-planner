@@ -8,7 +8,7 @@ WORKDIR '/home/test'
 
 COPY . .
 
-RUN ["mvn", "clean", "package", "-e"]
+RUN ["mvn", "clean", "package"]
 
 FROM amazoncorretto:21-alpine
 
