@@ -11,3 +11,8 @@
 After start up, app should be available at http://localhost:8000
 
 ### Endpoints - [OpenAPI Definition](http://localhost:8000/swagger-ui/index.html)
+
+### Build docker using packeto Buildpacks
+```
+mvn spring-boot:build-image
+```
