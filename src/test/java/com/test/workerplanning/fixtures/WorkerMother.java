@@ -26,11 +26,11 @@ public class WorkerMother {
                 .build();
     }
 
-    public static Worker withDayShift(Worker worker) {
+    public static Worker withShift(Worker worker, ShiftType type) {
         worker.addShift(Shift.builder()
                 .id(UUID.randomUUID())
                 .day(LocalDate.now())
-                .type(ShiftType.DAY)
+                .type(type)
                 .build());
         return worker;
     }

@@ -6,6 +6,7 @@ import com.test.workerplanning.domain.application_service.dto.WorkerDto;
 import com.test.workerplanning.domain.application_service.mapper.WorkerDtoMapper;
 import com.test.workerplanning.domain.application_service.ports.output.WorkerRepository;
 import com.test.workerplanning.domain.core.exception.WorkerNotFoundException;
+import com.test.workerplanning.domain.core.model.ShiftType;
 import com.test.workerplanning.domain.core.model.Worker;
 import com.test.workerplanning.fixtures.WorkerMother;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,7 @@ import static com.test.workerplanning.fixtures.WorkerMother.DOE;
 import static com.test.workerplanning.fixtures.WorkerMother.JOHN;
 import static com.test.workerplanning.fixtures.WorkerMother.JOHN_DOE_EMAIL;
 import static com.test.workerplanning.fixtures.WorkerMother.JOHN_DOE_ID;
-import static com.test.workerplanning.fixtures.WorkerMother.withDayShift;
+import static com.test.workerplanning.fixtures.WorkerMother.withShift;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.BDDMockito.given;
@@ -72,7 +73,7 @@ class WorkerApplicationServiceImplTest {
 
     @Test
     void shouldUpdateExistingWorker() {
-        Worker existingWorker = withDayShift(WorkerMother.johnDoe());
+        Worker existingWorker = withShift(WorkerMother.johnDoe(), ShiftType.DAY);
         given(workerRepository.findById(JOHN_DOE_ID)).willReturn(Optional.of(existingWorker));
         given(workerRepository.save(workerCaptor.capture())).willReturn(buildUpdatedWorker(existingWorker));
 
