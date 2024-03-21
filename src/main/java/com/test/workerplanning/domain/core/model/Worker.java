@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -69,10 +70,9 @@ public class Worker {
         shift.setWorker(this);
     }
 
-    public void update(Worker updatedWorker) {
-        firstName = updatedWorker.getFirstName();
-        lastName = updatedWorker.getLastName();
-        email = updatedWorker.getEmail();
-        version = updatedWorker.getVersion();
+    public boolean hasShiftAlreadyPlanned(LocalDate day) {
+        return shifts.stream()
+                .map(Shift::getDay)
+                .anyMatch(day::equals);
     }
 }

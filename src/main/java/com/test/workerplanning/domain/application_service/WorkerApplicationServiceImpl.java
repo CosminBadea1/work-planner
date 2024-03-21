@@ -66,11 +66,7 @@ public class WorkerApplicationServiceImpl implements WorkerApplicationService {
     }
 
     private void checkThatWorkerIsEligibleForShift(Worker worker, ScheduleShiftRequest scheduleShiftRequest) {
-        boolean hasShiftAlreadyPlaned = worker.getShifts().stream()
-                .map(Shift::getDay)
-                .anyMatch(day -> day.equals(scheduleShiftRequest.getDay()));
-
-        if (hasShiftAlreadyPlaned) {
+        if (worker.hasShiftAlreadyPlanned(scheduleShiftRequest.getDay())) {
             throw new ShiftDomainException("Worker %s already has a shift scheduled on %s. Please try a different day."
                     .formatted(scheduleShiftRequest.getWorkerId(), scheduleShiftRequest.getDay()));
         }
